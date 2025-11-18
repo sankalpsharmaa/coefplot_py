@@ -1,0 +1,12 @@
+name: coefplot-py-ci
+channels:
+  - defaults
+dependencies:
+  - numpy>=1.19
+  - pandas>=1.2
+  - matplotlib>=3.3
+  - scipy>=1.5
+  - pytest
+  - flake8
+  - pip
+
