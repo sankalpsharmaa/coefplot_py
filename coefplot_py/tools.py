@@ -19,16 +19,20 @@ matplotlib.use('Agg')  # Use non-interactive backend by default
 import matplotlib.pyplot as plt  # noqa: E402
 from typing import List, Optional, Union, Tuple
 
-# Configure LaTeX rendering
+# Configure LaTeX rendering (robust detection)
 LATEX_AVAILABLE = False
 try:
+    import shutil
+    if shutil.which('latex') is None:
+        raise RuntimeError('latex not found')
     plt.rcParams['text.usetex'] = True
     plt.rcParams['font.family'] = 'serif'
     plt.rcParams['font.serif'] = ['Computer Modern', 'Times', 'Palatino', 'New Century Schoolbook', 'Bookman', 'DejaVu Serif']
     plt.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
-    # Test LaTeX availability
-    fig, ax = plt.subplots(figsize=(1, 1))
-    ax.text(0.5, 0.5, r'$\alpha$')
+    # Force a render to ensure LaTeX is usable
+    fig, ax = plt.subplots(figsize=(1, 1), dpi=72)
+    ax.text(0.5, 0.5, r'$\alpha$', ha='center')
+    fig.canvas.draw()
     plt.close(fig)
     LATEX_AVAILABLE = True
 except Exception:
