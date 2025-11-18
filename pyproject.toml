@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "coefplot-py"
+version = "1.0.0"
+description = "Python implementation of Stata's coefplot functionality"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Sankalp Sharma", email = ""}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "numpy>=1.19.0",
+    "pandas>=1.2.0",
+    "matplotlib>=3.3.0",
+    "scipy>=1.5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov>=2.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/sankalpsharma/coefplot_py"
+Repository = "https://github.com/sankalpsharma/coefplot_py"
+Documentation = "https://github.com/sankalpsharma/coefplot_py#readme"
+
+[tool.setuptools]
+packages = ["coefplot_py"]
+
+[tool.setuptools.package-data]
+coefplot_py = ["*.ado"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.flake8]
+max-line-length = 120
+extend-ignore = [
+    "E402",  # matplotlib backend set before pyplot import
+    "E127", "E128",  # visual indentation in multiline calls
+    "E501",  # long lines (kept readable for labels)
+    "W291", "W293",  # trailing whitespace in preserved doc sections
+]
+exclude = [
+    ".git",
+    "__pycache__",
+    ".pytest_cache",
+    "tests",
+]

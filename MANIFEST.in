@@ -1,0 +1,13 @@
+include README.md
+include LICENSE
+include install.md
+include structure.md
+include example_summary.md
+include requirements.txt
+include pyproject.toml
+include setup.py
+include coefplot_py.ado
+include coefplot_py_example.do
+include test_coefplot_stata.do
+recursive-include coefplot_py *.py
+recursive-include coefplot_py *.ado
